@@ -7,105 +7,126 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;     
-            height: 100vh; 
-            margin: 0;
-            background-image: url(vpp.jpeg);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #fff;
-        }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #000000, #434343);
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .matrix {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+      color: rgba(0, 255, 0, 0.5);
+      font-size: 20px;
+      font-family: monospace;
+    }
 
-        .box {
-            width: 300px;
-            height: 330px;
-            padding: 20px;
-            position: relative;
-            text-align: center;
-            background-color: transparent;
-            border: 3px solid black;
-            backdrop-filter: blur(9px);
-            border-radius: 30px;
-            transform: perspective(1000px) rotateY('0deg');
-            box-shadow: 0 0 30px black;
-            position: relative;
-        }
+    .matrix div {
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      top: 0;
+      animation: matrix-fall linear infinite;
+    }
 
-        #text {
-            color: black;
-        }
+    @keyframes matrix-fall {
+      0% {
+        top: -100%;
+      }
+      100% {
+        top: 100%;
+      }
+    }
 
-        .input-container input {
-            color: rgb(0, 0, 0);
-        }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+    }
 
-        .centered-text {
-            color: rgb(0, 0, 0);
-        }
+    .box {
+      width: 300px;
+      height: 320px;
+      padding: 20px;
+      position: relative;
+      text-align: center;
+      background-color: rgb(0, 0, 0);
+      border-radius: 10px;
+      transform: perspective(1000px) rotateY(0deg);
+      box-shadow: 0 0 20px rgba(250, 249, 249, 0.7);
+    }
 
-        .input-container {
-            display: flex;
-            background: transparent;
-            border-radius: 1rem;
-            padding: 0.3rem;
-            gap: 0.3rem;
-            max-width: 300px;
-            width: 100%;
-        }
+    #text {
+      color: #f6f5f5;
+    }
 
-        .input-container input {
-            border-radius: 0.8rem 0 0 0.8rem;
-            background: transparent;
-            width: 89%;
-            flex-basis: 75%;
-            padding: 1rem;
-            border: 2px solid rgb(0, 0, 0);
-            color: rgb(0, 0, 0);
-            transition: 0.3s ease;
-        }
-         
-        .input-container input:focus {
-            border-left: 2px solid rgb(0, 0, 0);
-            outline: none;
-            box-shadow: 0 0 20px rgb(0, 0, 0);
-            box-shadow: inset 0 0 30px rgb(0, 0, 0) inset;
-        }
+    .input-container input {
+      color: #f1eaea;
+    }
 
-        .input-container button {
-            flex-basis: 25%;
-            padding: 1rem;
-            background: rgb(230, 226, 20);
-            font-weight: 800;
-            letter-spacing: 0.2rem;
-            text-transform: uppercase;
-            color: black;
-            border: none;
-            width:100%;
-            border-radius: 7px;
-            transition: 0.3s ease;
-        }
+    .centered-text {
+      color: #e9e4e4;
+    }
 
-        .input-container button:hover {
-            box-shadow: 0 0 20px rgb(230, 226, 20);
-            
-        }
+    .input-container {
+      display: flex;
+      background: rgb(10, 10, 10);
+      border-radius: 1rem;
+      background: black;
+      box-shadow: black;
+      padding: 0.3rem;
+      gap: 0.3rem;
+      max-width: 300px;
+      width: 100%;
+    }
 
-        #waiting-message {
-            color: #000000;
-            margin-top: 10px;
-        }
+    .input-container input {
+      border-radius: 0.8rem 0 0 0.8rem;
+      background: white;
+      box-shadow: inset 13px 13px 10px #dcdcdc, inset -13px -13px 10px #f4f4f4;
+      width: 100%;
+      flex-basis: 75%;
+      padding: 1rem;
+      border: white;
+      border-left: 2px solid #ecf2f8;
+      color: #000000;
+      transition: all 0.2s ease-in-out;
+    }
 
-        @media (max-width: 500px) {
+    .input-container input:focus {
+      border-left: 2px solid #ecf1f6;
+      outline: none;
+      box-shadow: inset 13px 13px 10px #f0f2f3, inset -13px -13px 10px #f4f4f4;
+    }
+
+    .input-container button {
+      flex-basis: 15%;
+      padding: 1rem;
+      background: #000000;
+      font-weight: 700;
+      letter-spacing: 0.3rem;
+      text-transform: uppercase;
+      color: white;
+      border: 2px solid yellow;
+      width: 90%;
+      border-radius: 0 1rem 1rem 0;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .input-container button:hover {
+      background-color: green;
+      border-color: yellow;
+    }
+
+    @media (max-width: 500px) {
       .input-container {
         flex-direction: column;
       }
@@ -115,7 +136,7 @@
       }
 
       .input-container button {
-        padding: 1rem;
+        padding: 0.4rem;
         border-radius: 0.8rem;
       }
     }
@@ -124,52 +145,53 @@
       text-align: center;
     }
 
-    #loading-spinner {
-      display: none;
-      color: rgb(0, 0, 0);
-      margin-top: 10px;
+    @media (max-width: 500px) {
+      .box {
+        width: 90%; 
+      }
     }
 
-    .fa-spinner {
-      animation: spin 2s linear infinite;
-    }
+    @media (max-width: 500px) {
+      .input-container input {
+        border-radius: 0.8rem;
+        width: 80%; 
+      }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      .input-container button {
+        padding: 1rem;
+        border-radius: 0.9rem;
+        width: 100%; 
+      }
     }
-
-    </style>
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="main">
-            <div class="box" id="box">
-                <div id="text">
-                    <i class="fa fa-user"></i>
-                    <p>
-                        <h3 class="centered-text">Link with phone number.</h3>
-                        <br>
-                        <h6>🔢 Enter your number with country code.</h6>
-                        <div class="input-container">
-                            <input placeholder="+947xxxxxxxx" type="number" id="number" placeholder="❗ Enter your phone number with country code." name="">
-                            <button id="submit">Submit</button>
-                        </div>
-                        <!-- Add the loading spinner -->
-                        <div id="loading-spinner">
-                          <i class="fas fa-spinner fa-spin"></i>
-                        </div>
-                        <br>
-                        <br>
-                        <main id="pair"></main>
-                    </p>
-                </div>
+  <div class="matrix"></div>
+  <div class="container">
+    <div class="main">
+      <div class="box" id="box">
+        <div id="text">
+          <i class="fa fa-user"></i>
+          <p>
+            <h3 class="centered-text">THARUSHA MD PAIRING CODE GENARATER 🔗</h3>
+            <br>
+            <h6>THARUSHA-MD CREATED BY THARUSHA SANDIPA 💪</h6>
+            <h6>Enter Your Number with Country Code.</h6>
+            <div class="input-container">
+              <input placeholder="9474XXXXXXX" type="number" id="number" placeholder="Enter your Phone Number with Country Code" name="">
+              <button id="submit">Submit</button>
             </div>
+            
+            <a id="waiting-message" class="centered-text" style="display: none;">Please wait a while</a>
+            <br>
+            <br>
+            <main id="pair"></main>
+          </p>
         </div>
+      </div>
     </div>
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js">
-    </script>  
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>  
      <script>
     
         let a = document.getElementById("pair");
